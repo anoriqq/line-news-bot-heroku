@@ -21,6 +21,8 @@ Your app should now be running on [localhost:5000](http://localhost:5000/).
 
 ```
 $ heroku create
+$ heroku config:set CHANNEL_SECRET=<LINEのチャネルシークレット>
+$ heroku config:set CHANNEL_ACCESS_TOKEN=<LINEのチャネルアクセストークン>
 $ git push heroku master
 $ heroku open
 ```
