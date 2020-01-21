@@ -55,21 +55,22 @@ async function handleEvent(event) {
     // const { title, news } = await getNews(text);
 
     client.replyMessage(event.replyToken, {
-      type: 'bubble',
-      body: {
-        type: 'box',
-        layout: 'horizontal',
-        contents: [
-          {
-            type: 'text',
-            text: 'Hello,',
-          },
-          {
-            type: 'text',
-            text: 'World!',
-          }
-        ]
-      }
+      type: 'text',
+      text: text,
+      // body: {
+      //   type: 'box',
+      //   layout: 'horizontal',
+      //   contents: [
+      //     {
+      //       type: 'text',
+      //       text: 'Hello,',
+      //     },
+      //     {
+      //       type: 'text',
+      //       text: 'World!',
+      //     }
+      //   ]
+      // }
     });
   } catch(error) {
     return console.error(error);
