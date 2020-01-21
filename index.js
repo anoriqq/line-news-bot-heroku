@@ -41,9 +41,10 @@ async function handleEvent(event) {
 
   client.replyMessage(event.replyToken, {
     type: 'text',
-    text,
+    text: `https://www.google.com/search?q=${encodeURI(text)}`,
   });
 
   // TODO ニュースを取得する
   // TODO ニュースを返す
+  // https://www.google.com/search?q=%E3%83%97%E3%83%AA%E3%83%B3
 }
