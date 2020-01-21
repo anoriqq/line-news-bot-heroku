@@ -7,6 +7,8 @@ const CHANNEL_SECRET = '19290ca149214fb45d4964e4ca42ab8d';
 express()
   .get('/', (req, res) => res.send({ok: true}))
   .post('/webhook', (req, res) => {
+    res.status(200).end();
+
     console.log(req.body);
 
     const signature = crypto
@@ -18,6 +20,5 @@ express()
     // req の中の message を取り出す
     // ニュースを取得する
     // ニュースを返す
-    res.status(200).end();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
