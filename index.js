@@ -55,8 +55,35 @@ async function handleEvent(event) {
     // const { title, news } = await getNews(text);
 
     client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: text,
+      type: 'flex',
+      altText: title,
+      contents: {
+        type: 'carousel',
+        contents: [
+          {
+            type: 'bubble',
+            body: {
+              type: 'box',
+              layout: 'vertical',
+              contents: [{
+                type: 'text',
+                text: 'プリンはとってもおいしい｡'
+              }],
+            }
+          },
+          {
+            type: 'bubble',
+            body: {
+              type: 'box',
+              layout: 'vertical',
+              contents: [{
+                type: 'text',
+                text: 'シチューはとってもおいしい｡'
+              }],
+            }
+          },
+        ],
+      }
       // body: {
       //   type: 'box',
       //   layout: 'horizontal',
