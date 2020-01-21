@@ -17,6 +17,10 @@ $ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
+## LINE setup
+
+Create new channel on the [LINE Developer console](https://developers.line.biz/console)
+
 ## Deploying to Heroku
 
 ```
@@ -28,6 +32,8 @@ $ git push heroku master
 or
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+then, add webhook URL (`https://<heroku app domain>/webhook/`) to the channel.
 
 ## Documentation
 
