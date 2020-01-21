@@ -9,16 +9,17 @@ express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({extended: false}))
   .post('/webhook', (req, res) => {
-    res.status(200).end();
-
-    console.log(req.body);
-
     const signature = crypto
       .createHmac('SHA256', CHANNEL_SECRET)
       .update(Buffer.from(JSON.stringify(req.body)))
       .digest('base64');
 
-    console.log(signature);
+    if(req.headers['X-Line-Signature'] !== signature) {
+      return res.status(500).end();
+    }
+
+    res.status(200).end();
+
     // req の中の message を取り出す
     // ニュースを取得する
     // ニュースを返す
