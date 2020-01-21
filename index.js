@@ -68,12 +68,24 @@ async function handleEvent(event) {
       }
     });
 
+    console.log(newsContents);
+
     client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
       contents: {
         type: 'carousel',
-        contents: newsContents,
+        contents: [{
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [{
+            type: 'text',
+            text: 'おなかすいた',
+          }],
+        }
+      }],
       }
     });
   } catch(error) {
