@@ -52,9 +52,9 @@ async function handleEvent(event) {
 
   try {
 
-    const { title, news } = await getNews(text);
+    // const { title, news } = await getNews(text);
 
-    const tmpData = {
+    client.replyMessage(event.replyToken, {
       type: 'bubble',
       body: {
         type: 'box',
@@ -70,9 +70,7 @@ async function handleEvent(event) {
           }
         ]
       }
-    }
-
-    client.replyMessage(event.replyToken, tmpData);
+    });
   } catch(error) {
     return console.error(error);
   }
