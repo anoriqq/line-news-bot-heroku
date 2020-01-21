@@ -68,25 +68,10 @@ async function handleEvent(event) {
       }
     });
 
-    console.log(newsContents);
-
     client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
-      contents: {
-        type: 'carousel',
-        contents: [{
-        type: 'bubble',
-        body: {
-          type: 'box',
-          layout: 'vertical',
-          contents: [{
-            type: 'text',
-            text: 'おなかすいた',
-          }],
-        }
-      }],
-      }
+      contents: newsContents,
     });
   } catch(error) {
     return console.error(error);
@@ -98,7 +83,7 @@ async function getNews(text) {
 
   const data = await parseXML(response.body)
   const title = data.rss.channel[0].title[0];
-  const news = data.rss.channel[0].item.splice(3);
+  const news = data.rss.channel[0].item.splice(0, 3);
 
   return {
     title,
