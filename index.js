@@ -55,6 +55,8 @@ async function handleEvent(event) {
     const { title, news } = await getNews(text);
 
     const newsContents = news.map(n => {
+      console.log(n.title);
+
       return {
         type: 'bubble',
         body: {
@@ -62,7 +64,7 @@ async function handleEvent(event) {
           layout: 'vertical',
           contents: [{
             type: 'text',
-            text: n.title.slice(0, 40),
+            text: n.title[0],
           }],
         }
       }
@@ -86,8 +88,6 @@ async function getNews(text) {
   const data = await parseXML(response.body)
   const title = data.rss.channel[0].title[0];
   const news = data.rss.channel[0].item.splice(0, 3);
-
-  console.log(news);
 
   return {
     title,
