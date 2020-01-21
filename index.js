@@ -1,11 +1,13 @@
 const express = require('express')
 const crypto = require('crypto');
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 
 const CHANNEL_SECRET = '19290ca149214fb45d4964e4ca42ab8d';
 
 express()
-  .get('/', (req, res) => res.send({ok: true}))
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({extended: false}))
   .post('/webhook', (req, res) => {
     res.status(200).end();
 
