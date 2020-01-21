@@ -14,18 +14,15 @@ express()
       .update(Buffer.from(JSON.stringify(req.body)))
       .digest('base64');
 
-    console.log(req.headers['x-line-signature'])
-    console.log(req.headers['X-Line-Signature'])
-    console.log(signature)
-
     if(req.headers['x-line-signature'] !== signature) {
-      return res.status(500).end();
+      // LINE以外からのアクセス
+      return res.status(404).end();
     }
 
-    res.status(200).end();
+    // TODO req の中の message を取り出す
+    // TODO ニュースを取得する
+    // TODO ニュースを返す
 
-    // req の中の message を取り出す
-    // ニュースを取得する
-    // ニュースを返す
+    return res.status(200).end();
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
