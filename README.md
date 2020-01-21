@@ -1,4 +1,4 @@
-# node-js-getting-started
+# line-news-bot-heroku
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
@@ -9,8 +9,8 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+$ git clone https://github.com/anoriqq/line-news-bot-heroku.git # or clone your own fork
+$ cd line-news-bot-heroku
 $ npm install
 $ npm start
 ```
