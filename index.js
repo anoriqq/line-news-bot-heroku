@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 
-const CHANNEL_SECRET = '19290ca149214fb45d4964e4ca42ab8d';
+const CHANNEL_SECRET = '41de4756d3981cdf52c2ba26e163011a';
 
 express()
   .use(bodyParser.json())
@@ -15,7 +15,7 @@ express()
 
     const signature = crypto
       .createHmac('SHA256', CHANNEL_SECRET)
-      .update(req.body)
+      .update(Buffer.from(JSON.stringify(req.body)))
       .digest('base64');
 
     console.log(signature);
