@@ -68,7 +68,7 @@ async function handleEvent(event) {
       }
     });
 
-    console.log(newsContents);
+    console.log(newsContents[0].body.contents);
 
     client.replyMessage(event.replyToken, {
       type: 'flex',
