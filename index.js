@@ -55,8 +55,6 @@ async function handleEvent(event) {
     const { title, news } = await getNews(text);
 
     const newsContents = news.map(n => {
-      console.log(n.title);
-
       return {
         type: 'bubble',
         body: {
@@ -64,7 +62,7 @@ async function handleEvent(event) {
           layout: 'vertical',
           contents: [{
             type: 'text',
-            text: n.title[0],
+            text: n.title[0].splice(0, 40),
           }],
         }
       }
