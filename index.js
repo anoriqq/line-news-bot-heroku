@@ -63,6 +63,8 @@ async function handleEvent(event) {
           contents: [{
             type: 'text',
             text: n.title[0],
+            wrap: true,
+            maxLines: 5,
           }],
         }
       }
