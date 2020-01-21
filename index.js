@@ -54,50 +54,27 @@ async function handleEvent(event) {
 
     const { title, news } = await getNews(text);
 
+    const newsContents = news.map(n => {
+      return {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [{
+            type: 'text',
+            text: n.title,
+          }],
+        }
+      },;
+    });
+
     client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
       contents: {
         type: 'carousel',
-        contents: [
-          {
-            type: 'bubble',
-            body: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [{
-                type: 'text',
-                text: 'プリンはとってもおいしい｡'
-              }],
-            }
-          },
-          {
-            type: 'bubble',
-            body: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [{
-                type: 'text',
-                text: 'シチューはとってもおいしい｡'
-              }],
-            }
-          },
-        ],
+        contents: newsContents,
       }
-      // body: {
-      //   type: 'box',
-      //   layout: 'horizontal',
-      //   contents: [
-      //     {
-      //       type: 'text',
-      //       text: 'Hello,',
-      //     },
-      //     {
-      //       type: 'text',
-      //       text: 'World!',
-      //     }
-      //   ]
-      // }
     });
   } catch(error) {
     return console.error(error);
