@@ -62,7 +62,7 @@ async function handleEvent(event) {
           layout: 'vertical',
           contents: [{
             type: 'text',
-            text: n.title[0].splice(0, 40),
+            text: n.title[0].slice(0, 40),
           }],
         }
       }
