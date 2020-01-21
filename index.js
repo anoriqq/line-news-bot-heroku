@@ -68,6 +68,8 @@ async function handleEvent(event) {
       }
     });
 
+    console.log(newsContents);
+
     client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
