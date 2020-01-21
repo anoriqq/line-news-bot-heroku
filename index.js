@@ -8,10 +8,12 @@ const parseXML = require('xml2js').parseStringPromise;
 const wrap = fn => (req, res, next) => fn(req, res, next).catch(next);
 
 const PORT = process.env.PORT || 5000;
+const channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN;
+const channelSecret = process.env.CHANNEL_SECRET;
 
 const client = new line.Client({
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken,
+  channelSecret,
 });
 
 express()
@@ -19,7 +21,7 @@ express()
   .use(bodyParser.urlencoded({ extended: false }))
   .post('/webhook', (req, res) => {
     const signature = crypto
-      .createHmac('SHA256', CHANNEL_SECRET)
+      .createHmac('SHA256', channelSecret)
       .update(Buffer.from(JSON.stringify(req.body)))
       .digest('base64');
 
