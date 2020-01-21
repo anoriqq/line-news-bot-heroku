@@ -1,20 +1,24 @@
-const express = require('express')
+const express = require('express');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
 const CHANNEL_SECRET = '41de4756d3981cdf52c2ba26e163011a';
 
 express()
   .use(bodyParser.json())
-  .use(bodyParser.urlencoded({extended: false}))
+  .use(bodyParser.urlencoded({ extended: false }))
   .post('/webhook', (req, res) => {
     const signature = crypto
       .createHmac('SHA256', CHANNEL_SECRET)
       .update(Buffer.from(JSON.stringify(req.body)))
       .digest('base64');
 
-    if(req.headers['X-Line-Signature'] !== signature) {
+    console.log(req.headers['x-line-signature'])
+    console.log(req.headers['X-Line-Signature'])
+    console.log(signature)
+
+    if(req.headers['x-line-signature'] !== signature) {
       return res.status(500).end();
     }
 
@@ -24,4 +28,4 @@ express()
     // ニュースを取得する
     // ニュースを返す
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
