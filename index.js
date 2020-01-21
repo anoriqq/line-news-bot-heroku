@@ -68,6 +68,8 @@ async function handleEvent(event) {
       }
     });
 
+    console.log(newsContents[0].body.contents[0].text);
+
     await client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
@@ -84,6 +86,8 @@ async function getNews(text) {
   const data = await parseXML(response.body)
   const title = data.rss.channel[0].title[0];
   const news = data.rss.channel[0].item.splice(0, 3);
+
+  console.log(news);
 
   return {
     title,
