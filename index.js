@@ -1,9 +1,16 @@
 const express = require('express');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 5000;
+const line = require('@line/bot-sdk');
 
+const PORT = process.env.PORT || 5000;
+const CHANNEL_ACCESS_TOKEN = 'cl943kzifDNwXPWVjvSVLVGJXWW6eRnPr4Eb5rLEhbHriucDqJ5IZzpGR7LlRfrkTpIKhXBYm27SBj/lv3eNVgG+83Ds1kjRnPtwedecLtj/weaTpo6npRekFk/KC8gwxNqMedBz7jW33wQxRzt4mgdB04t89/1O/w1cDnyilFU=';
 const CHANNEL_SECRET = '41de4756d3981cdf52c2ba26e163011a';
+
+const client = new line.Client({
+  channelAccessToken: CHANNEL_ACCESS_TOKEN,
+  channelSecret: CHANNEL_SECRET,
+});
 
 express()
   .use(bodyParser.json())
@@ -19,10 +26,19 @@ express()
       return res.status(404).end();
     }
 
-    // TODO req の中の message を取り出す
-    // TODO ニュースを取得する
-    // TODO ニュースを返す
+    const events = req.body.events;
+    if(!events) return res.status(200).end();
 
-    return res.status(200).end();
+    Promise.all(events.map(handleEvent))
+      .then(result=>res.json(result));
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+async function handleEvent(event) {
+  if(event.type !== 'message' || event.message.type !== 'text') return;
+
+  const text = event.message.text;
+  console.log(text);
+  // TODO ニュースを取得する
+  // TODO ニュースを返す
+}
