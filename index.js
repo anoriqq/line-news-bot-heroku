@@ -68,12 +68,61 @@ async function handleEvent(event) {
       }
     });
 
-    console.log(newsContents[0].body.contents[0].text);
+    console.log(newsContents);
+
+    console.log([
+      {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [{
+            type: 'text',
+            text: 'シチュー食べたい',
+          }],
+        }
+      },
+      {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [{
+            type: 'text',
+            text: 'シチュー食べたい',
+          }],
+        }
+      },
+    ]);
 
     await client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
-      contents: newsContents,
+      // contents: newsContents,
+      contents: [
+        {
+          type: 'bubble',
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            contents: [{
+              type: 'text',
+              text: 'シチュー食べたい',
+            }],
+          }
+        },
+        {
+          type: 'bubble',
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            contents: [{
+              type: 'text',
+              text: 'シチュー食べたい',
+            }],
+          }
+        },
+      ],
     });
   } catch(error) {
     return console.error(error);
