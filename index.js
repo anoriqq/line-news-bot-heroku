@@ -71,7 +71,6 @@ async function handleEvent(event) {
           type: 'uri',
           label: 'ニュースページのリンク',
           uri: n.link[0],
-          // ['altUri.desktop']: n.link[0],
         },
       }
     });
