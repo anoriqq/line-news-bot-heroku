@@ -62,13 +62,11 @@ async function handleEvent(event) {
           layout: 'vertical',
           contents: [{
             type: 'text',
-            text: n.title,
+            text: n.title.slice(0, 40),
           }],
         }
       }
     });
-
-    console.log(newsContents[0].body.contents);
 
     await client.replyMessage(event.replyToken, {
       type: 'flex',
