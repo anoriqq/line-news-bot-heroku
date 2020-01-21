@@ -24,7 +24,6 @@ $ heroku create
 $ heroku config:set CHANNEL_SECRET=<LINEのチャネルシークレット>
 $ heroku config:set CHANNEL_ACCESS_TOKEN=<LINEのチャネルアクセストークン>
 $ git push heroku master
-$ heroku open
 ```
 or
 
