@@ -62,112 +62,19 @@ async function handleEvent(event) {
           layout: 'vertical',
           contents: [{
             type: 'text',
-            text: /* n.title[0].slice(0, 40) */'シチュー食べたい',
+            text: n.title[0],
           }],
         }
       }
     });
 
-    // console.log(newsContents);
-
-    // console.log([
-    //   {
-    //     type: 'bubble',
-    //     body: {
-    //       type: 'box',
-    //       layout: 'vertical',
-    //       contents: [{
-    //         type: 'text',
-    //         text: 'シチュー食べたい',
-    //       }],
-    //     }
-    //   },
-    //   {
-    //     type: 'bubble',
-    //     body: {
-    //       type: 'box',
-    //       layout: 'vertical',
-    //       contents: [{
-    //         type: 'text',
-    //         text: 'シチュー食べたい',
-    //       }],
-    //     }
-    //   },
-    // ]);
-
-// {
-//   "type": "bubble",
-//   "header": {
-//     "type": "box",
-//     "layout": "vertical",
-//     "contents": [
-//       {
-//         "type": "text",
-//         "text": "Header text"
-//       }
-//     ]
-//   },
-//   "hero": {
-//     "type": "image",
-//     "url": "https://example.com/flex/images/image.jpg"
-//   },
-//   "body": {
-//     "type": "box",
-//     "layout": "vertical",
-//     "contents": [
-//       {
-//         "type": "text",
-//         "text": "Body text"
-//       }
-//     ]
-//   },
-//   "footer": {
-//     "type": "box",
-//     "layout": "vertical",
-//     "contents": [
-//       {
-//         "type": "text",
-//         "text": "Footer text"
-//       }
-//     ]
-//   },
-//   "styles": {
-//     "comment": "See the example of a bubble style object"
-//   }
-// }
-
     await client.replyMessage(event.replyToken, {
       type: 'flex',
       altText: title,
-      // contents: newsContents,
       contents: {
         type: 'carousel',
         contents: newsContents,
       }
-      // contents: [
-      //   {
-      //     type: 'bubble',
-      //     body: {
-      //       type: 'box',
-      //       layout: 'vertical',
-      //       contents: [{
-      //         type: 'text',
-      //         text: 'シチュー食べたい',
-      //       }],
-      //     }
-      //   },
-      //   {
-      //     type: 'bubble',
-      //     body: {
-      //       type: 'box',
-      //       layout: 'vertical',
-      //       contents: [{
-      //         type: 'text',
-      //         text: 'シチュー食べたい',
-      //       }],
-      //     }
-      //   },
-      // ],
     });
   } catch(error) {
     return console.error(error);
