@@ -52,7 +52,7 @@ async function handleEvent(event) {
 
   try {
 
-    // const { title, news } = await getNews(text);
+    const { title, news } = await getNews(text);
 
     client.replyMessage(event.replyToken, {
       type: 'flex',
