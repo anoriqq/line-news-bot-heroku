@@ -8,24 +8,15 @@ const parseXML = require('xml2js').parseStringPromise;
 const wrap = fn => (req, res, next) => fn(req, res, next).catch(next);
 
 const PORT = process.env.PORT || 5000;
-const CHANNEL_ACCESS_TOKEN = 'cl943kzifDNwXPWVjvSVLVGJXWW6eRnPr4Eb5rLEhbHriucDqJ5IZzpGR7LlRfrkTpIKhXBYm27SBj/lv3eNVgG+83Ds1kjRnPtwedecLtj/weaTpo6npRekFk/KC8gwxNqMedBz7jW33wQxRzt4mgdB04t89/1O/w1cDnyilFU=';
-const CHANNEL_SECRET = '41de4756d3981cdf52c2ba26e163011a';
 
 const client = new line.Client({
-  channelAccessToken: CHANNEL_ACCESS_TOKEN,
-  channelSecret: CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.CHANNEL_SECRET,
 });
 
 express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
-  .get('/test', wrap(async (req, res) => {
-    const text = req.query.q;
-    console.log('text: ', text);
-    if(!text) return res.end();
-    const data = await getNews(text);
-    return res.json({ data });
-  }))
   .post('/webhook', (req, res) => {
     const signature = crypto
       .createHmac('SHA256', CHANNEL_SECRET)
@@ -43,7 +34,7 @@ express()
     Promise.all(events.map(handleEvent))
       .then(result => res.json(result));
   })
-  .listen(PORT, () => console.log(`Listening on http://localhost:${PORT}/test?q=%E3%83%97%E3%83%AA%E3%83%B3`));
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 async function handleEvent(event) {
   if(event.type !== 'message' || event.message.type !== 'text') return;
