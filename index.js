@@ -38,7 +38,12 @@ async function handleEvent(event) {
   if(event.type !== 'message' || event.message.type !== 'text') return;
 
   const text = event.message.text;
-  console.log(text);
+
+  client.replyMessage(event.replyToken, {
+    type: 'text',
+    text,
+  });
+
   // TODO ニュースを取得する
   // TODO ニュースを返す
 }
