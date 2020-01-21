@@ -65,7 +65,7 @@ async function handleEvent(event) {
             text: n.title,
           }],
         }
-      },;
+      },
     });
 
     client.replyMessage(event.replyToken, {
