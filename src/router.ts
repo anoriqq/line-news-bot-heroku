@@ -18,7 +18,6 @@ router.post('/webhook', wrap(async (req, res) => {
     console.log('Accessed from not LINE server');
     return res.end();
   }
-
   const result = await handleEvents(body.events);
   return res.json(result);
 }));

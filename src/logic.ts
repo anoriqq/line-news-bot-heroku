@@ -7,7 +7,10 @@ const CHANNEL_ACCESS_TOKEN = process.env.CHANNEL_ACCESS_TOKEN;
 const CHANNEL_SECRET = process.env.CHANNEL_SECRET;
 
 export function signatureValidation({body, lineSignature}: {body: any, lineSignature: string}) {
-  if (!CHANNEL_SECRET) return false;
+  if (!CHANNEL_SECRET) {
+    console.error('CHANNEL_SECRET is undefined');
+    return false;
+  }
   const signature = createHmac('SHA256', CHANNEL_SECRET)
     .update(Buffer.from(JSON.stringify(body)))
     .digest('base64');
@@ -23,9 +26,15 @@ async function handleEvent(event: any) {
     if (
       event.type !== 'message'
       || event.message.type !== 'text'
-      || !CHANNEL_ACCESS_TOKEN
-      || CHANNEL_SECRET
     ) return;
+
+    if (
+      !CHANNEL_ACCESS_TOKEN
+      || !CHANNEL_SECRET
+    ) {
+      console.error(new Error('Required secrets'));
+      return;
+    }
 
     const lineClient = new LineClient({
       channelAccessToken: CHANNEL_ACCESS_TOKEN,
@@ -62,9 +71,8 @@ async function handleEvent(event: any) {
         contents: newsContents,
       }
     });
-    console.log('返信成功');
   } catch(error) {
-    console.error(error);
+    console.error('Error: ', error);
     return;
   }
 }
