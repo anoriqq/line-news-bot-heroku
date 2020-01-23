@@ -68,7 +68,7 @@ async function handleEvent(event: any) {
   }
 }
 
-export async function getNews(text): Promise<{ title: string, news: {title: string[], link: string[]}[] }> {
+async function getNews(text): Promise<{ title: string, news: {title: string[], link: string[]}[] }> {
   const newsApiEndpoint = 'https://news.google.com/rss/search';
   const requestUrl = `${newsApiEndpoint}?hl=ja&gl=JP&ceid=JP:ja&q=${encodeURI(text)}`;
   const { body } = await got(requestUrl);
