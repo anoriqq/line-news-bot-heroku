@@ -62,6 +62,7 @@ async function handleEvent(event: any) {
         contents: newsContents,
       }
     });
+    console.log('返信成功');
   } catch(error) {
     console.error(error);
     return;
