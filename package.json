@@ -1,5 +1,5 @@
 {
-  "name": "node-js-getting-started",
+  "name": "line-news-bot-heroku",
   "version": "0.3.0",
   "description": "A sample Node.js app using Express 4",
   "engines": {
@@ -7,24 +7,33 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start": "node dist/bundle.js",
+    "build": "webpack --config ./webpack.prod.js --hide-modules",
+    "build:dev": "webpack --config ./webpack.dev.js --hide-modules",
+    "test": "node test.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
     "body-parser": "^1.19.0",
-    "ejs": "^2.5.6",
     "express": "^4.15.2",
     "got": "^10.2.2",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "request": "^2.81.0",
-    "tape": "^4.7.0"
+    "@types/express": "^4.17.2",
+    "@types/webpack": "^4.41.3",
+    "@types/xml2js": "^0.4.5",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/anoriqq/line-news-bot-heroku"
   },
   "keywords": [
     "node",
