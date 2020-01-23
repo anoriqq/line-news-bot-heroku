@@ -15,6 +15,7 @@ router.post('/webhook', wrap(async (req, res) => {
     || typeof lineSignature !== 'string'
     || !signatureValidation({ body, lineSignature })
   ) {
+    console.log('Accessed from not LINE server');
     return res.end();
   }
 
